@@ -1,0 +1,66 @@
+Type,Area_sqft,Bedrooms,Bathrooms,City,Area,Price
+Flat,850,2,1,Karachi,DHA,7500000
+Flat,900,2,2,Lahore,Gulberg,8000000
+Flat,1200,3,2,Islamabad,F7,9500000
+Flat,1000,2,2,Islamabad,G11,8800000
+Flat,850,2,1,Karachi,Gulshan,7500000
+Flat,900,2,2,Lahore,Johar Town,8000000
+Flat,1200,3,2,Islamabad,E11,9500000
+Flat,1000,2,2,Islamabad,F10,8800000
+Flat,850,2,1,Karachi,Bahria Town,7500000
+Flat,900,2,2,Lahore,Model Town,8000000
+Flat,1200,3,2,Islamabad,G8,9500000
+Flat,1000,2,2,Islamabad,I8,8800000
+Flat,850,2,1,Karachi,Clifton,7500000
+Flat,900,2,2,Lahore,Askari 11,8000000
+Flat,1200,3,2,Islamabad,G13,9500000
+Flat,1000,2,2,Islamabad,G9,8800000
+Flat,850,2,1,Karachi,Nazimabad,7500000
+Flat,900,2,2,Lahore,Wapda Town,8000000
+Flat,1200,3,2,Islamabad,H13,9500000
+Flat,1000,2,2,Islamabad,G7,8800000
+House,2500,4,3,Lahore,Model Town,22000000
+House,2700,5,4,Karachi,Malir,25000000
+House,3000,4,3,Islamabad,G6,27000000
+House,3200,5,4,Quetta,Cantt,30000000
+House,2800,4,3,Multan,Shah Rukn-e-Alam,28000000
+House,2500,4,3,Lahore,Garden Town,22000000
+House,2700,5,4,Karachi,Saddar,25000000
+House,3000,4,3,Islamabad,F8,27000000
+House,3200,5,4,Quetta,Satellitetown,30000000
+House,2800,4,3,Multan,Bosan Road,28000000
+House,2500,4,3,Lahore,Faisal Town,22000000
+House,2700,5,4,Karachi,FB Area,25000000
+House,3000,4,3,Islamabad,G14,27000000
+House,3200,5,4,Quetta,Jinnah Town,30000000
+House,2800,4,3,Multan,New Multan,28000000
+Plot,1800,0,0,Rawalpindi,Bahria Town,5000000
+Plot,2000,0,0,Peshawar,Phase 3,5500000
+Plot,2200,0,0,Hyderabad,Latifabad,6000000
+Plot,1900,0,0,Sialkot,Cantt,5300000
+Plot,2100,0,0,Sukkur,New Sukkur,5200000
+Plot,1800,0,0,Rawalpindi,DHA,5000000
+Plot,2000,0,0,Peshawar,Hayatabad,5500000
+Plot,2200,0,0,Hyderabad,Qasimabad,6000000
+Plot,1900,0,0,Sialkot,Khadim Ali Road,5300000
+Plot,2100,0,0,Sukkur,Minar Road,5200000
+Shop,450,0,1,Karachi,Saddar,3000000
+Shop,500,0,1,Lahore,Hall Road,3200000
+Shop,550,0,1,Peshawar,Karkhano,3500000
+Shop,480,0,1,Multan,Gulgasht,3100000
+Shop,470,0,1,Faisalabad,D Ground,2900000
+Shop,450,0,1,Karachi,North Nazimabad,3000000
+Shop,500,0,1,Lahore,Moon Market,3200000
+Shop,550,0,1,Peshawar,Saddar Bazaar,3500000
+Shop,480,0,1,Multan,Kutchery,3100000
+Shop,470,0,1,Faisalabad,Millat Town,2900000
+Warehouse,5000,0,0,Karachi,Korangi,15000000
+Warehouse,5500,0,0,Lahore,Sundar,18000000
+Warehouse,6000,0,0,Islamabad,I9,20000000
+Warehouse,5200,0,0,Gujranwala,Cantt,17000000
+Warehouse,5800,0,0,Quetta,Hazar Ganji,16500000
+Warehouse,5000,0,0,Karachi,SITE,15000000
+Warehouse,5500,0,0,Lahore,Raiwind,18000000
+Warehouse,6000,0,0,Islamabad,H9,20000000
+Warehouse,5200,0,0,Gujranwala,Sattelite Town,17000000
+Warehouse,5800,0,0,Quetta,Samungli Road,16500000
