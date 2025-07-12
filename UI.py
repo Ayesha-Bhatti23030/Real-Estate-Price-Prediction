@@ -145,5 +145,3 @@ result_label = tk.Label(form_frame, text="", font=("Century Gothic", 12, "bold")
 result_label.grid(row=8, columnspan=2, pady=(0, 15))
 
 window.mainloop()
-        
-
