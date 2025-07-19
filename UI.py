@@ -1,6 +1,15 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+import pandas as pd
+
+# Load cities dynamically from CSV
+try:
+    df = pd.read_csv("merged.csv")  # Replace with actual CSV filename
+    unique_cities = sorted(df["City"].dropna().unique())
+except Exception as e:
+    print("Error loading cities:", e)
+    unique_cities = []
 
 def predict_price():
     house_type = house_type_var.get()
@@ -15,9 +24,9 @@ def predict_price():
             result = "Please enter number of rooms and bathrooms."
             result_label.config(text=result, fg="red")
             return
-        price = int(area) * 2000 + int(rooms) * 50000 + int(bathrooms) * 30000
+        price = int(area) 
     else:
-        price = int(area) * 2500
+        price = int(area) 
 
     if house_type and area and location and city:
         result = f"Predicted Price: PKR {price}"
@@ -25,6 +34,19 @@ def predict_price():
         result = "Please fill all fields."
 
     result_label.config(text=result, fg="green")
+
+# ==== Validation Functions ====
+def only_int_allowed(new_value):
+    return new_value.isdigit() or new_value == ""
+
+def only_float_allowed(new_value):
+    if new_value == "":
+        return True
+    try:
+        float(new_value)
+        return True
+    except ValueError:
+        return False
 
 
 def on_property_type_change(event):
@@ -41,9 +63,17 @@ def on_property_type_change(event):
         rooms_var.set("")
         bathrooms_var.set("")
 
+
+def on_city_change(event):
+    selected_city = city_var.get()
+    filtered_locations = sorted(df[df['City'] == selected_city]['Area'].dropna().unique())
+    location_menu['values'] = filtered_locations
+    location_var.set("")  # reset previously selected value
+
+
 # === Main Window ===
 window = tk.Tk()
-window.title("Real Estate Moodboard UI")
+window.title("Real Estate Predictor")
 window.geometry("1000x600")
 
 # === Canvas for Background + Moodboard ===
@@ -87,6 +117,8 @@ button_font = ("Century Gothic", 11, "bold")
 title_font = ("Century Gothic", 17, "bold")
 entry_opts = {'font': entry_font, 'width': 33, 'relief': 'flat',
               'highlightbackground': '#cfcfe8', 'highlightthickness': 1, 'bg': '#ffffff'}
+
+
 # Variables
 house_type_var = tk.StringVar()
 rooms_var = tk.StringVar()
@@ -95,6 +127,8 @@ area_var = tk.StringVar()
 location_var = tk.StringVar()
 city_var = tk.StringVar()
 
+# ==== Validation Registration ====
+vcmd_int = (window.register(only_int_allowed), "%P")
 
 # Title
 tk.Label(form_frame, text="Real Estate Price Predictor", font=title_font,
@@ -109,28 +143,40 @@ house_type_menu = ttk.Combobox(form_frame, textvariable=house_type_var,
 house_type_menu.grid(row=1, column=1, pady=5, padx=10, sticky="w")
 house_type_menu.bind("<<ComboboxSelected>>", on_property_type_change)
 
+
 # Rooms & Bathrooms (conditionally shown)
 rooms_label = tk.Label(form_frame, text="Number of Rooms:", font=label_font,bg="#f9f9fb", fg="#444")
 rooms_label.grid(row=2, column=0, pady=5, padx=20, sticky="e")
-rooms_entry = tk.Entry(form_frame, textvariable=rooms_var, **entry_opts)
+rooms_entry = tk.Entry(form_frame, textvariable=rooms_var,validate="key", validatecommand=vcmd_int, **entry_opts)
 rooms_entry.grid(row=2, column=1, pady=5, padx=10, sticky="w")
 
 bathrooms_label = tk.Label(form_frame, text="Number of Bathrooms:", font=label_font, bg="#f9f9fb", fg="#444")
 bathrooms_label.grid(row=3, column=0, pady=5, padx=20, sticky="e")
-bathrooms_entry = tk.Entry(form_frame, textvariable=bathrooms_var, **entry_opts)
+bathrooms_entry = tk.Entry(form_frame, textvariable=bathrooms_var, validate="key", validatecommand=vcmd_int, **entry_opts)
 bathrooms_entry.grid(row=3, column=1, pady=5, padx=10, sticky="w")
+
 
 # Area
 tk.Label(form_frame, text="Area (sq. ft.):", font=label_font,  bg="#f9f9fb", fg="#444").grid(row=4, column=0, pady=5, padx=20, sticky="e")
-tk.Entry(form_frame, textvariable=area_var, **entry_opts).grid(row=4, column=1, pady=5, padx=10, sticky="w")
+tk.Entry(form_frame, textvariable=area_var, validate="key", validatecommand=vcmd_int, **entry_opts).grid(row=4, column=1, pady=5, padx=10, sticky="w")
 
-# Location
-tk.Label(form_frame, text="Location:", font=label_font,  bg="#f9f9fb", fg="#444").grid(row=5, column=0, pady=5, padx=20, sticky="e")
-tk.Entry(form_frame, textvariable=location_var, **entry_opts).grid(row=5, column=1, pady=5, padx=10, sticky="w")
+
 
 # City
-tk.Label(form_frame, text="City:", font=label_font,  bg="#f9f9fb", fg="#444").grid(row=6, column=0, pady=5, padx=20, sticky="e")
-tk.Entry(form_frame, textvariable=city_var, **entry_opts).grid(row=6, column=1, pady=5, padx=10, sticky="w")
+tk.Label(form_frame, text="City:", font=label_font,  bg="#f9f9fb", fg="#444").grid(row=5, column=0, pady=5, padx=20, sticky="e")
+city_menu = ttk.Combobox(form_frame, textvariable=city_var,
+                         values=unique_cities,
+                         font=entry_font, state="readonly", width=30)
+city_menu.grid(row=5, column=1, pady=5, padx=10, sticky="w")
+city_menu.bind("<<ComboboxSelected>>", on_city_change)
+
+
+# Location
+tk.Label(form_frame, text="Location:", font=label_font,  bg="#f9f9fb", fg="#444").grid(row=6, column=0, pady=5, padx=20, sticky="e")
+location_menu = ttk.Combobox(form_frame, textvariable=location_var,
+                             values=[], font=entry_font, state="readonly", width=30)
+location_menu.grid(row=6, column=1, pady=5, padx=10, sticky="w")
+
 
 predict_btn = tk.Button(
     form_frame, text="🔮 Predict Price", font=button_font,
