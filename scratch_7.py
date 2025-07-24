@@ -1,6 +1,7 @@
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+import joblib
 
 # Load the updated CSV file
 df = pd.read_csv('merged.csv')
@@ -25,7 +26,7 @@ final_df.to_csv('merged_preprocessed.csv', index=False)
 print(" Preprocessing complete! File saved as 'merged_preprocessed.csv'")
 
 import pandas as pd
-df=pd.read_csv('../merged_preprocessed.csv')
+df=pd.read_csv('merged_preprocessed.csv')
 print(df)
 
 import matplotlib.pyplot as plt
@@ -106,3 +107,7 @@ print("Mean Absolute Percentage Error:", percent_error, "%")
 r2 = model.score(x_test, y_test)
 print("R² Score:", r2)
 
+joblib.dump(model, 'price_predictor.pkl')
+joblib.dump(scaler, 'scaler.pkl')
+joblib.dump(list(X.columns), 'columns.pkl')
+print("Scaler and model got saved successfully")
